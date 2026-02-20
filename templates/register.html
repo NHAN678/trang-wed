@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Đăng ký{% endblock %}
+{% block content %}
+<section class="card">
+    <h1>Tạo tài khoản mới</h1>
+    <form method="post" class="form-grid">
+        <label>Tên đăng nhập</label>
+        <input name="username" minlength="4" required />
+
+        <label>Mật khẩu</label>
+        <input name="password" type="password" minlength="6" required />
+
+        <button type="submit">Đăng ký</button>
+    </form>
+    <p>Đã có tài khoản? <a href="{{ url_for('login') }}">Đăng nhập</a></p>
+</section>
+{% endblock %}
