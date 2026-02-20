@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Bảng điều khiển{% endblock %}
+{% block content %}
+<section class="card">
+    <div class="topbar">
+        <h1>Xin chào, {{ username }}</h1>
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit" class="danger">Đăng xuất</button>
+        </form>
+    </div>
+
+    <h2>Tải tệp lên</h2>
+    <form method="post" enctype="multipart/form-data" class="upload-box">
+        <input type="file" name="file" required />
+        <button type="submit">Tải lên</button>
+    </form>
+
+    <h2>Danh sách tệp của bạn</h2>
+    {% if files %}
+    <table>
+        <thead>
+            <tr>
+                <th>Tên tệp</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+                <tr>
+                    <td>{{ file }}</td>
+                    <td>
+                        <a class="button-link" href="{{ url_for('download', filename=file) }}">Tải xuống</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Chưa có tệp nào được tải lên.</p>
+    {% endif %}
+</section>
+{% endblock %}
